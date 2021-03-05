@@ -1,5 +1,6 @@
 settings.py
 *.log
+*.json
 .vscode/
 .idea/
 env/
