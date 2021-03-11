@@ -1,6 +1,8 @@
 settings.py
 *.log
 *.json
+*.csv
+*.zip
 .vscode/
 .idea/
 env/
