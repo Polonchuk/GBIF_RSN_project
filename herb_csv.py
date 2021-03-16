@@ -18,7 +18,7 @@ list_plants = [ "Acroptilon repens",
             "Iva axillaris",
 ]
 string_dict = []
-s_dict = []
+#s_dict = []
 
 with open('data-zones.csv', encoding='utf-8') as r_file:
     zones_list = csv.DictReader(r_file, delimiter=',')
@@ -32,12 +32,12 @@ with open('data-zones.csv', encoding='utf-8') as r_file:
                 date = data.split(' ')
  
                 string_dict.append({'scientific_name': plant, 'ru_name': ru_name, 'longitude': "Добавить", 'latitude': "Добавить", 'region': "region1", 'sub-region': "region2", 'year': date[-1], 'order': data_order, 'link': 'link', 'source': 'rsn'})
-            else:
-                if row["Наименование карантинного вредного организма"] not in s_dict:
-                    s_dict.append(row["Наименование карантинного вредного организма"])
+            #else:
+                #if row["Наименование карантинного вредного организма"] not in s_dict:
+                    #s_dict.append(row["Наименование карантинного вредного организма"])
 
 with open("rsn_all_species_data.json", "w", encoding='utf-8') as a_file:
         json.dump(string_dict, a_file, ensure_ascii=False)
-with open("check.json", "w", encoding='utf-8') as a_file:
-        json.dump(s_dict, a_file, ensure_ascii=False)
-#print(string_dict)
+#with open("check.json", "w", encoding='utf-8') as a_file:
+        #json.dump(s_dict, a_file, ensure_ascii=False)
+
