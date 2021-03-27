@@ -171,13 +171,13 @@ with open('0222448-200613084148143.csv', encoding='utf-8') as r_file:
                 name_key_join = sep.join(name_key_split)
                 if region_verbatim_join == name_key_join:
                     region = regions_reference[name_key]
-                    print(f'Определено при обработке: {region_verbatim} это {name_key}')
+#                    print(f'Определено при обработке: {region_verbatim} это {name_key}')
                     name_match = True
 
             if name_match == False:
                 region = "not defined"
                 locality_verbatim = species_occurrence.get('locality')
-                print(f'Не определено! stateProvince: {region_verbatim}, locality: {locality_verbatim}')
+#                print(f'Не определено! stateProvince: {region_verbatim}, locality: {locality_verbatim}')
                 no_region_counter += 1
                 
 
@@ -187,10 +187,11 @@ with open('0222448-200613084148143.csv', encoding='utf-8') as r_file:
 
 # Добавляем указание рода для нужного нам рода:
         sc_name_split = scientific_name.split()
-        if sc_name_split[0] == 'Cuscuta':
-            genus = 'Cuscuta'
-        else:
-            genus = 'genus'
+        genus = sc_name_split[0]
+
+        if genus == "" or genus == None:
+            print(f'Род не определен!')
+
 
 # Записываем нужные данные по всем встреченным видам в общий список (словарей):
         all_species_fine_data.append({
