@@ -24,15 +24,15 @@ class Herb_species(Base):
 class Herb_occurrence(Base):
     __tablename__ = 'herb_occurrences'
     id = Column(Integer, primary_key=True)
-    scientific_name = Column(String, ForeignKey(Herb_species.scientific_name), index=True, nullable=False)
+    scientific_name_id = Column(Integer, ForeignKey(Herb_species.id), index=True, nullable=False)
     latitude = Column(Numeric)
     longitude = Column(Numeric)
     region = Column(String, index=True)
-    year = Column(String)
-    source = Column(String, ForeignKey(Info_source.alias), index=True, nullable=False)
+    year = Column(Integer)
+    source_id = Column(Integer, ForeignKey(Info_source.id), index=True, nullable=False)
 
     def __repr__(self):
-        return f'<Occurrence id: {self.id}, species: {self.scientific_name}, region: {self.region}, info from {self.source_alias}>'
+        return f'<Occurrence id: {self.id}, species: {Herb_species.query.get(self.scientific_name_id).scientific_name}, region: {self.region}, info from {Info_source.query.get(self.source_id).alias}>'
 
 if __name__ == '__main__':
     Base.metadata.create_all(bind=engine)
