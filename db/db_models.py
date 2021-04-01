@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey
+from sqlalchemy import Column, Integer, String, Numeric, ForeignKey
 from db import Base, engine
 
 class Info_source(Base):
@@ -25,11 +25,11 @@ class Herb_occurrence(Base):
     __tablename__ = 'herb_occurrences'
     id = Column(Integer, primary_key=True)
     scientific_name = Column(String, ForeignKey(Herb_species.scientific_name), index=True, nullable=False)
-    latitude = Column(Float)
-    longitude = Column(Float)
+    latitude = Column(Numeric)
+    longitude = Column(Numeric)
     region = Column(String, index=True)
-    year = Column(Date.year), index=True)
-    source = Column(Integer, ForeignKey(Info_source.alias), index=True, nullable=False)
+    year = Column(String)
+    source = Column(String, ForeignKey(Info_source.alias), index=True, nullable=False)
 
     def __repr__(self):
         return f'<Occurrence id: {self.id}, species: {self.scientific_name}, region: {self.region}, info from {self.source_alias}>'
